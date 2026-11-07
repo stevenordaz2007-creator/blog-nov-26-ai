@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arepas El Sabor | Puerto La Cruz, Venezuela</title>
+<meta name="description" content="Las mejores arepas de Puerto La Cruz. Pedidos por WhatsApp y pago con Pago Móvil. Delivery a domicilio.">
+<style>
+  /* ============ VARIABLES Y RESET ============ */
+  :root {
+    --primary: #e67e22;      /* naranja arepa */
+    --primary-dark: #d35400;
+    --secondary: #f39c12;    /* amarillo maíz */
+    --dark: #2c3e50;
+    --light: #fdf2e9;        /* fondo crema */
+    --white: #ffffff;
+    --gray: #95a5a6;
+    --success: #27ae60;
+    --shadow: 0 4px 6px rgba(0,0,0,0.1);
+    --radius: 12px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--light);
+    color: var(--dark);
+    line-height: 1.6;
+  }
+
+  a { text-decoration: none; color: inherit; }
+  ul { list-style: none; }
+  img { max-width: 100%; display: block; }
+
+  /* ============ HEADER / NAV ============ */
+  header {
+    background: var(--white);
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .top-bar {
+    background: var(--primary);
+    color: var(--white);
+    font-size: 0.85rem;
+    padding: 6px 20px;
+    text-align: center;
+  }
+
+  .top-bar strong { color: var(--secondary); }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 5%;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .logo span { color: var(--dark); }
+
+  .nav-links {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+  }
+
+  .nav-links a {
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--primary); }
+
+  .cart-btn {
+    position: relative;
+    background: var(--primary);
+    color: var(--white);
+    padding: 10px 18px;
+    border-radius: var(--radius);
+    font-weight: 700;
+    transition: background 0.2s;
+  }
+
+  .cart-btn:hover { background: var(--primary-dark); }
+
+  .cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #e74c3c;
+    color: white;
+    font-size: 0.75rem;
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-weight: bold;
+  }
+
+  .mobile-menu {
+    display: none;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    color: var(--dark);
+    cursor: pointer;
+  }
+
+  /* ============ HERO ============ */
+  .hero {
+    background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+                url('https://images.unsplash.com/photo-1625247204838-a656d0049822?auto=format&fit=crop&w=1200&q=80');
+    background-size: cover;
+    background-position: center;
+    height: 70vh;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--white);
+    padding: 0 20px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    margin-bottom: 15px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  }
+
+  .hero p {
+    font-size: clamp(1rem, 3vw, 1.3rem);
+    max-width: 700px;
+    margin: 0 auto 25px;
+    opacity: 0.95;
+  }
+
+  .btn-whatsapp {
+    background: #25d366;
+    color: white;
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.2s;
+    box-shadow: var(--shadow);
+  }
+
+  .btn-whatsapp:hover { background: #1ebe57; }
+
+  /* ============ SECTIONS ============ */
+  .section { padding: 70px 5%; }
+
+  .section-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: var(--primary);
+  }
+
+  .section-subtitle {
+    text-align: center;
+    color: var(--gray);
+    margin-bottom: 45px;
+    font-size: 1.1rem;
+  }
+
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  /* ============ CATALOGO ============ */
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+  }
+
+  .product-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+  }
+
+  .product-img {
+    height: 200px;
+    background: #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gray);
+    font-size: 0.9rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .product-img img { width: 100%; height: 100%; object-fit: cover; }
+
+  .product-img .placeholder {
+    font-weight: 600;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .product-info { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+
+  .product-cat {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--primary);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .product-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .product-desc {
+    font-size: 0.9rem;
+    color: var(--gray);
+    margin-bottom: 14px;
+    flex: 1;
+  }
+
+  .product-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+  }
+
+  .product-price {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--primary-dark);
+  }
+
+  .btn-add {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .btn-add:hover { background: var(--primary-dark); }
+  .btn-add:disabled { background: var(--gray); cursor: not-allowed; }
+
+  /* ============ CARRITO ============ */
+  .cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 400px;
+    height: 100vh;
+    background: var(--white);
+    box-shadow: -5px 0 15px rgba(0,0,0,0.15);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cart-sidebar.open { transform: translateX(0); }
+
+  .cart-header {
+    background: var(--primary);
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .cart-header h3 { font-size: 1.3rem; }
+
+  .close-cart {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  .cart-items {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+  }
+
+  .cart-item {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+    align-items: center;
+  }
+
+  .cart-item-img {
+    width: 70px;
+    height: 70px;
+    background: #eee;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  .cart-item-info { flex: 1; }
+
+  .cart-item-name { font-weight: 700; margin-bottom: 4px; }
+
+  .cart-item-price { color: var(--gray); font-size: 0.9rem; margin-bottom: 6px; }
+
+  .cart-qty {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 4px;
+    width: 110px;
+  }
+
+  .cart-qty button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    width: 26px;
+    height: 26px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cart-qty span { font-weight: 700; }
+
+  .cart-remove {
+    background: none;
+    border: none;
+    color: #e74c3c;
+    cursor: pointer;
+    font-size: 1.2rem;
+  }
+
+  .cart-footer {
+    background: var(--light);
+    padding: 20px;
+    border-top: 1px solid #ddd;
+  }
+
+  .cart-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin-bottom: 16px;
+    color: var(--primary-dark);
+  }
+
+  .btn-checkout {
+    background: #27ae60;
+    color: white;
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .btn-checkout:hover { background: #219a52; }
+  .btn-checkout:disabled { background: var(--gray); cursor: not-allowed; }
+
+  .cart-empty {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--gray);
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1900;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .overlay.active { opacity: 1; pointer-events: all; }
+
+  /* ============ PAGO / DELIVERY ============ */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+  }
+
+  .info-card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .info-card h3 {
+    margin-bottom: 15px;
+    color: var(--primary);
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .info-card p { margin-bottom: 12px; color: #555; font-size: 0.95rem; }
+  .info-card strong { color: var(--dark); }
+
+  .pago-datos {
+    background: var(--light);
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+    font-size: 0.9rem;
+  }
+
+  .badge {
+    display: inline-block;
+    background: var(--secondary);
+    color: var(--dark);
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-right: 6px;
+    margin-bottom: 6px;
+  }
+
+  /* ============ GALERIA ============ */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+
+  .gallery-item {
+    height: 220px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    position: relative;
+    box-shadow: var(--shadow);
+  }
+
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+  .gallery-item:hover img { transform: scale(1.05); }
+
+  /* ============ CONTACTO / MAPA ============ */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+  }
+
+  .map-container {
+    height: 350px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    background: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gray);
+    font-size: 1rem;
+  }
+
+  .contact-card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .contact-card h3 { margin-bottom: 15px; color: var(--primary); }
+  .contact-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 18px; }
+  .contact-item strong { display: block; color: var(--dark); }
+
+  .socials { display: flex; gap: 12px; margin-top: 20px; }
+  .socials a {
+    width: 40px; height: 40px;
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: background 0.2s;
+  }
+  .socials a:hover { background: var(--primary-dark); }
+
+  /* ============ FOOTER ============ */
+  footer {
+    background: var(--dark);
+    color: var(--white);
+    padding: 40px 5%;
+    text-align: center;
+  }
+
+  footer p { opacity: 0.8; font-size: 0.95rem; }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .mobile-menu { display: block; }
+    .cart-sidebar { width: 100%; }
+    .hero { height: 60vh; }
+    .section { padding: 40px 5%; }
+  }
+
+  /* Alerta temporal */
+  .toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--dark);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    z-index: 3000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    font-size: 0.95rem;
+  }
+  .toast.show { opacity: 1; pointer-events: all; }
+</style>
+</head>
+<body>
+
+  <!-- Top bar -->
+  <div class="top-bar">
+    📍 Puerto La Cruz, Anzoátegui · Delivery a domicilio · Pagos con <strong>Pago Móvil y Transferencia</strong>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <nav>
+      <div class="logo">🫓 Arepas<span>El Sabor</span></div>
+
+      <div class="nav-links">
+        <a href="#inicio">Inicio</a>
+        <a href="#catalogo">Catálogo</a>
+        <a href="#pago">Pago y Delivery</a>
+        <a href="#galeria">Galería</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+
+      <button class="cart-btn" id="cartBtn">🛒 Carrito <span class="cart-count" id="cartCount">0</span></button>
+      <button class="mobile-menu" id="mobileMenu">☰</button>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="inicio">
+    <h1>Las mejores arepas de Puerto La Cruz</h1>
+    <p>Hechas a mano con amor, maíz venezolano y los mejores rellenos. Pedidos por WhatsApp y pago con Pago Móvil.</p>
+    <a href="https://wa.me/58XXXXXXXXX" class="btn-whatsapp" target="_blank">💬 Pedir por WhatsApp</a>
+  </section>
+
+  <!-- Catalogo -->
+  <section class="section" id="catalogo">
+    <div class="container">
+      <h2 class="section-title">Nuestro Menú</h2>
+      <p class="section-subtitle">Elige tus arepas favoritas y agrégalas al carrito</p>
+
+      <div class="products-grid">
+        <!-- Tarjetas generadas por JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Pago y Delivery -->
+  <section class="section" id="pago" style="background: var(--white);">
+    <div class="container">
+      <h2 class="section-title">¿Cómo pagar y recibir tu pedido?</h2>
+      <p class="section-subtitle">Pago Móvil, transferencia y delivery en Puerto La Cruz</p>
+
+      <div class="info-grid">
+        <!-- Pago Movil -->
+        <div class="info-card">
+          <h3>📱 Pago Móvil</h3>
+          <p>Realiza tu transferencia por Pago Móvil antes o al momento de la entrega. Envía el comprobante por WhatsApp para confirmar tu pedido.</p>
+          <div class="pago-datos">
+            <strong>Banco:</strong> <span id="pago-banco">Bicentenario (ej. Banco de Venezuela)</span><br>
+            <strong>Teléfono:</strong> <span id="pago-telefono">04126985001</span><br>
+            <strong>Titular:</strong> <span id="pago-titular">Steven</span><br>
+            <strong>RIF/C.I.:</strong> <span id="pago-rif">V-XXXXXXXX</span>
+          </div>
+          <p style="margin-top:12px; font-size:0.85rem; color:#666;">⚠️ Reemplaza estos datos con los tuyos en el archivo index.html.</p>
+        </div>
+
+        <!-- Transferencia -->
+        <div class="info-card">
+          <h3>🏦 Transferencia Bancaria</h3>
+          <p>También aceptamos transferencias entre bancos. Consulta nuestra información por WhatsApp o al hacer tu pedido.</p>
+          <div class="pago-datos">
+            <strong>Banco:</strong> <span id="trans-banco">Tu Banco</span><br>
+            <strong>Cuenta:</strong> <span id="trans-cuenta">0000-0000-00-0000000000</span><br>
+            <strong>Titular:</strong> <span id="trans-titular">Tu Nombre</span>
+          </div>
+        </div>
+
+        <!-- Delivery -->
+        <div class="info-card">
+          <h3>🛵 Delivery a Domicilio</h3>
+          <p>Llevamos tus arepas hasta la puerta de tu casa en Puerto La Cruz y zonas cercanas.</p>
+          <p><strong>Zonas de cobertura:</strong></p>
+          <div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:8px;">
+            <span class="badge">Centro</span>
+            <span class="badge">Lechería</span>
+            <span class="badge">Paseo Colón</span>
+            <span class="badge">Onoto</span>
+            <span class="badge">Puerto La Cruz</span>
+          </div>
+          <p style="margin-top:12px; font-size:0.9rem;"><strong>Costo de envío:</strong> consulta por WhatsApp según tu zona.</p>
+        </div>
+
+        <!-- Recogida -->
+        <div class="info-card">
+          <h3>🏪 Recogida en Local</h3>
+          <p>Puedes hacer tu pedido y pasar a recogerlo directamente en nuestro local en Puerto La Cruz. Pago en efectivo o Pago Móvil al recoger.</p>
+          <p style="margin-top:10px; font-size:0.9rem;"><strong>Horario:</strong> <span id="horario-local">Lunes a Sábado, 8:00 AM - 6:00 PM</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Galeria -->
+  <section class="section" id="galeria">
+    <div class="container">
+      <h2 class="section-title">Galería</h2>
+      <p class="section-subtitle">Fotos de nuestras arepas (placeholder hasta que subas las tuyas)</p>
+
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1625247204838-a656d0049822?auto=format&fit=crop&w=600&q=80" alt="Arepas">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1559935223-c208e8104bae?auto=format&fit=crop&w=600&q=80" alt="Arepas">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1601051392044-365525f4749f?auto=format&fit=crop&w=600&q=80" alt="Arepas">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1586201375761-8385f96063be?auto=format&fit=crop&w=600&q=80" alt="Arepas">
+        </div>
+      </div>
+      <p style="text-align:center; margin-top:20px; color:#666; font-size:0.9rem;">Sustituye estas imágenes por fotos reales de tus arepas tomadas con tu celular.</p>
+    </div>
+  </section>
+
+  <!-- Contacto -->
+  <section class="section" id="contacto" style="background: var(--white);">
+    <div class="container">
+      <h2 class="section-title">Contáctanos</h2>
+      <p class="section-subtitle">Ubicación, horarios y cómo encontrarnos en Puerto La Cruz</p>
+
+      <div class="contact-grid">
+        <div class="map-container">
+          <p>🗺️ Inserta aquí tu mapa de Google Maps<br>(o una foto de tu local)</p>
+        </div>
+
+        <div class="contact-card">
+          <h3>📞 Información de contacto</h3>
+          <div class="contact-item">
+            <strong>WhatsApp:</strong>
+            <span>58XXXXXXXXX (Puerto La Cruz)</span>
+          </div>
+          <div class="contact-item">
+            <strong>Teléfono:</strong>
+            <span>0XXX-XXXXXXX</span>
+          </div>
+          <div class="contact-item">
+            <strong>Dirección:</strong>
+            <span>Tu Local, Puerto La Cruz, Anzoátegui, Venezuela</span>
+          </div>
+          <div class="contact-item">
+            <strong>Horario:</strong>
+            <span>Lunes a Sábado: 8:00 AM - 6:00 PM<br>Domingo: Cerrado</span>
+          </div>
+          <div class="socials">
+            <a href="#" target="_blank" title="WhatsApp">💬</a>
+            <a href="#" target="_blank" title="Instagram">📷</a>
+            <a href="#" target="_blank" title="Facebook">📘</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 Arepas El Sabor - Puerto La Cruz, Venezuela. Hecho con 💛 y maíz.</p>
+  </footer>
+
+  <!-- CARRITO SIDEBAR -->
+  <div class="overlay" id="overlay"></div>
+
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3>🛒 Tu Carrito</h3>
+      <button class="close-cart" id="closeCart">✕</button>
+    </div>
+
+    <div class="cart-items" id="cartItems">
+      <div class="cart-empty">Tu carrito está vacío</div>
+    </div>
+
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total:</span>
+        <span id="cartTotal">Bs. 0,00</span>
+      </div>
+      <button class="btn-checkout" id="btnCheckout" disabled>Finalizar Pedido (WhatsApp)</button>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">Producto agregado al carrito</div>
+
+  <script>
+    // ================= CONFIGURACION =================
+    const WHATSAPP_NUMBER = "58XXXXXXXXX"; // <-- CAMBIA por tu número de WhatsApp (código país + número, sin espacios ni +)
+    const CURRENCY = "Bs.";               // Moneda (Bolívares)
+    const DELIVERY_FEE = 0;               // Costo de envío fijo (0 = calcular por zona / consultar)
+
+    // ================= PRODUCTOS =================
+    // Edita nombres, precios y categorías. Las imágenes son placeholders.
+    const products = [
+      {
+        id: 1,
+        name: "Arepas de Queso de Mano",
+        price: 35,
+        category: "Clásicas",
+        desc: "Arepa rellena con queso blanco venezolano rallado.",
+        img: "https://images.unsplash.com/photo-1625247204838-a656d0049822?auto=format&fit=crop&w=500&q=80"
+      },
+      {
+        id: 2,
+        name: "Reina Pepiada",
+        price: 80,
+        category: "Especiales",
+        desc: "Pollo con aguacate, mayonesa y cebolleta.",
+        img: "https://images.unsplash.com/photo-1559935223-c208e8104bae?auto=format&fit=crop&w=500&q=80"
+      },
+      {
+        id: 3,
+        name: "Dominó",
+        price: 70,
+        category: "Clásicas",
+        desc: "Carne mechada con queso blanco.",
+        img: "https://images.unsplash.com/photo-1601051392044-365525f4749f?auto=format&fit=crop&w=500&q=80"
+      },
+      {
+        id: 4,
+        name: "Pabellón",
+        price: 95,
+        category: "Especiales",
+        desc: "Carne mechada, caraotas negras, plátano maduro y queso.",
+        img: "https://images.unsplash.com/photo-1586201375761-8385f96063be?auto=format&fit=crop&w=500&q=80"
+      },
+      {
+        id: 5,
+        name: "Huevo con Queso",
+        price: 55,
+        category: "Clásicas",
+        desc: "Huevo frito con queso blanco.",
+        img: "https://images.unsplash.com/photo-1601051392044-365525f4749f?auto=format&fit=crop&w=500&q=80"
+      },
+      {
+        id: 6,
+        name: "Carne Mechada",
+        price: 65,
+        category: "Clásicas",
+        desc: "Carne desmechada con su jugo.",
+        img: "https://images.unsplash.com/photo-1625247204838-a656d0049822?auto=format&fit=crop&w=500&q=80"
+      },
+      {
+        id: 7,
+        name: "Pollo",
+        price: 60,
+        category: "Clásicas",
+        desc: "Pollo desmechado con ajíes.",
+        img: "https://images.unsplash.com/photo-1559935223-c208e8104bae?auto=format&fit=crop&w=500&q=80"
+      },
+      {
+        id: 8,
+        name: "Jamón y Queso",
+        price: 60,
+        category: "Clásicas",
+        desc: "Jamón dulce con queso blanco.",
+        img: "https://images.unsplash.com/photo-1601051392044-365525f4749f?auto=format&fit=crop&w=500&q=80"
+      }
+    ];
+
+    // ================= CARRITO =================
+    let cart = [];
+
+    const productsGrid = document.querySelector('.products-grid');
+    const cartItemsEl = document.getElementById('cartItems');
+    const cartCountEl = document.getElementById('cartCount');
+    const cartTotalEl = document.getElementById('cartTotal');
+    const cartSidebar = document.getElementById('cartSidebar');
+    const overlay = document.getElementById('overlay');
+    const cartBtn = document.getElementById('cartBtn');
+    const closeCartBtn = document.getElementById('closeCart');
+    const btnCheckout = document.getElementById('btnCheckout');
+    const toast = document.getElementById('toast');
+
+    // Render productos
+    function renderProducts() {
+      productsGrid.innerHTML = '';
+      products.forEach(p => {
+        const card = document.createElement('article');
+        card.className = 'product-card';
+        card.innerHTML = `
+          <div class="product-img">
+            <img src="${p.img}" alt="${p.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="placeholder" style="display:none;">📷 Foto pendiente</div>
+          </div>
+          <div class="product-info">
+            <div class="product-cat">${p.category}</div>
+            <div class="product-name">${p.name}</div>
+            <div class="product-desc">${p.desc}</div>
+            <div class="product-footer">
+              <span class="product-price">${CURRENCY} ${p.price.toLocaleString('es-VE', {minimumFractionDigits:2, maximumFractionDigits:2})}</span>
+              <button class="btn-add" data-id="${p.id}">Agregar</button>
+            </div>
+          </div>
+        `;
+        productsGrid.appendChild(card);
+      });
+
+      // Eventos agregar
+      document.querySelectorAll('.btn-add').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const id = parseInt(e.target.dataset.id);
+          addToCart(id);
+        });
+      });
+    }
+
+    function addToCart(id) {
+      const product = products.find(p => p.id === id);
+      const existing = cart.find(item => item.id === id);
+
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ ...product, qty: 1 });
+      }
+
+      saveCart();
+      renderCart();
+      showToast('Producto agregado al carrito');
+      openCart();
+    }
+
+    function removeFromCart(id) {
+      cart = cart.filter(item => item.id !== id);
+      saveCart();
+      renderCart();
+    }
+
+    function changeQty(id, delta) {
+      const item = cart.find(i => i.id === id);
+      if (!item) return;
+      item.qty += delta;
+      if (item.qty <= 0) removeFromCart(id);
+      else {
+        saveCart();
+        renderCart();
+      }
+    }
+
+    function saveCart() {
+      localStorage.setItem('arepas_cart', JSON.stringify(cart));
+      updateCartBadge();
+    }
+
+    function loadCart() {
+      const saved = localStorage.getItem('arepas_cart');
+      if (saved) cart = JSON.parse(saved);
+      updateCartBadge();
+      renderCart();
+    }
+
+    function updateCartBadge() {
+      const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+      cartCountEl.textContent = totalQty;
+      btnCheckout.disabled = totalQty === 0;
+    }
+
+    function renderCart() {
+      cartItemsEl.innerHTML = '';
+      if (cart.length === 0) {
+        cartItemsEl.innerHTML = '<div class="cart-empty">Tu carrito está vacío</div>';
+        cartTotalEl.textContent = `Bs. 0,00`;
+        return;
+      }
+
+      let total = 0;
+
+      cart.forEach(item => {
+        total += item.price * item.qty;
+        const el = document.createElement('div');
+        el.className = 'cart-item';
+        el.innerHTML = `
+          <img class="cart-item-img" src="${item.img}" alt="${item.name}" onerror="this.style.display='none'">
+          <div class="cart-item-info">
+            <div class="cart-item-name">${item.name}</div>
+            <div class="cart-item-price">${CURRENCY} ${item.price.toLocaleString('es-VE', {minimumFractionDigits:2})}</div>
+            <div class="cart-qty">
+              <button data-id="${item.id}" data-delta="-1">−</button>
+              <span>${item.qty}</span>
+              <button data-id="${item.id}" data-delta="1">+</button>
+            </div>
+          </div>
+          <button class="cart-remove" data-id="${item.id}">🗑️</button>
+        `;
+        cartItemsEl.appendChild(el);
+      });
+
+      cartTotalEl.textContent = `Bs. ${total.toLocaleString('es-VE', {minimumFractionDigits:2, maximumFractionDigits:2})}`;
+
+      // eventos
+      cartItemsEl.querySelectorAll('.cart-remove').forEach(btn => {
+        btn.addEventListener('click', (e) => removeFromCart(parseInt(e.target.dataset.id)));
+      });
+      cartItemsEl.querySelectorAll('.cart-qty button').forEach(btn => {
+        btn.addEventListener('click', (e) => changeQty(parseInt(e.target.dataset.id), parseInt(e.target.dataset.delta)));
+      });
+    }
+
+    function openCart() {
+      cartSidebar.classList.add('open');
+      overlay.classList.add('active');
+    }
+
+    function closeCart() {
+      cartSidebar.classList.remove('open');
+      overlay.classList.remove('active');
+    }
+
+    cartBtn.addEventListener('click', openCart);
+    closeCartBtn.addEventListener('click', closeCart);
+    overlay.addEventListener('click', closeCart);
+
+    // ================= CHECKOUT / WHATSAPP =================
+    btnCheckout.addEventListener('click', () => {
+      if (cart.length === 0) return;
+
+      let total = 0;
+      let msg = `🫓 *Nuevo pedido - Arepas El Sabor*\n\n`;
+
+      cart.forEach(item => {
+        total += item.price * item.qty;
+        msg += `• ${item.name} x${item.qty} - Bs. ${(item.price * item.qty).toLocaleString('es-VE', {minimumFractionDigits:2})}\n`;
+      });
+
+      msg += `\n*Total: Bs. ${total.toLocaleString('es-VE', {minimumFractionDigits:2})}*\n`;
+      msg += `\nPor favor confirma los datos de Pago Móvil y la zona de delivery en Puerto La Cruz.\nGracias por tu pedido.`;
+
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+      window.open(url, '_blank');
+    });
+
+    // ================= TOAST =================
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2500);
+    }
+
+    // ================= INICIALIZAR =================
+    renderProducts();
+    loadCart();
+
+  </script>
+</body>
+</html>
